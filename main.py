@@ -14,10 +14,15 @@ from pdf2image.exceptions import (
     PDFSyntaxError
 )
 
-
 # use homebrew to install tesseract
 # brew install tesseract
 # brew info tesseract
+# pip3 install numpy
+# pip3 install pandas
+# pip3 install Pillow
+# pip3 install opencv-python
+# pip3 install pdf2image
+# pip3 install openpyxl
 
 ########################      PARAMETERS      #######################
 
@@ -25,28 +30,6 @@ from pdf2image.exceptions import (
 
 #ocr setup
 #os.environ['TESSDATA_PREFIX'] = r'/Users/morgan.keane/bbs2ops/Tesseract-OCR/tesseract.exe'
-
-
-def ppm_to_pil(ppm_filepath):
-    """
-    Converts a PPM image file to a PIL Image object.
-
-    Args:
-        ppm_filepath: Path to the PPM image file.
-
-    Returns:
-        A PIL Image object, or None if an error occurs.
-    """
-    try:
-        img = Image.open(ppm_filepath)
-        return img
-    except FileNotFoundError:
-        print(f"Error: File not found: {ppm_filepath}")
-        return None
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return None
-    
 
 class PDF_FILE:
     def __init__(self,dir,name):
