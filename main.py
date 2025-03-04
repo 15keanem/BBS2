@@ -1,4 +1,8 @@
-#main.ipynb
+# main.ipynb
+#
+# Uses relative directories "input/Check_Copy" and "input/TC_Report", to scan crewmember's names by cropping sections of PDFs dropped inside those directories.
+# Saves in "output", PDFs with each crewmember's Timecard on top and Check Copies behind them according to the detected name.
+# Saves in "output" also two XLSX files with errors and info about timecards and check copies that were unable to be matched with eachother / anything.
 
 import numpy as np;
 import pandas as pd;
@@ -24,12 +28,7 @@ from pdf2image.exceptions import (
 # pip3 install pdf2image
 # pip3 install openpyxl
 
-########################      PARAMETERS      #######################
-
 #files_tc = os.listdir(path_to_tc)
-
-#ocr setup
-#os.environ['TESSDATA_PREFIX'] = r'/Users/morgan.keane/bbs2ops/Tesseract-OCR/tesseract.exe'
 
 class PDF_FILE:
     def __init__(self,dir,name):
@@ -47,7 +46,6 @@ class PDF_FILE:
             thresh = cv2.threshold(msk, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
             inv = 255 - thresh
             inv = msk
-
             # pytesseract config
             languages_ = "eng"
             special_config = "--psm 6 --oem 3"
@@ -61,11 +59,9 @@ class PDF_FILE:
                 txt_strp_list_a = txt_strp.split("\n")[1].split(" ")[1].split("/")[1]
                 txt_strp = " ".join([txt_strp_list_a,txt_strp_list_b])
             self.addPage(pil_container,txt_strp.rstrip(), ind)
-
             # preview the image
             #cv2.imshow("msk",inv)
             #cv2.waitKey(0)
-
     def addPage(self, text, index):
         # this gets overloaded by class TC_FILE and class CC_FILE definitions anyway
         pass
@@ -198,11 +194,4 @@ main_checkcopies.scan()
 
 main_file_program(main_timecards,main_checkcopies)
 main_file_report(main_timecards,main_checkcopies)
-
-
-
-
-
-
-
 
