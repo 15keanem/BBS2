@@ -18,15 +18,20 @@ from pdf2image.exceptions import (
     PDFSyntaxError
 )
 
-# use homebrew to install tesseract
+# install brew (according to the web) and add to path , then use homebrew to install tesseract, poppler
 # brew install tesseract
+# brew install poppler
 # brew info tesseract
+# brew info poppler
+
+# install python packages via pip
 # pip3 install numpy
 # pip3 install pandas
 # pip3 install Pillow
 # pip3 install opencv-python
 # pip3 install pdf2image
 # pip3 install openpyxl
+# pip3 install pytesseract
 
 #files_tc = os.listdir(path_to_tc)
 
